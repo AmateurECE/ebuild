@@ -119,18 +119,15 @@ CRATES="
 
 inherit cargo
 
-DESCRIPTION="Workspaces with the swayest style! This program will dynamically rename your workspaces to indicate which programs are running in each workspace. It uses the Sway IPC. In the absence of a config file, one will be generated automatically.See ${XDG_CONFIG_HOME}/workstyle/config.yml for  details."
-# Double check the homepage as the cargo_metadata crate
-# does not provide this value so instead repository is used
+DESCRIPTION="Dynamically rename your Sway workspaces to indicate which programs are running in each workspace"
 HOMEPAGE="https://github.com/Lyr-7D1h/swayest_workstyle"
 SRC_URI="https://github.com/Lyr-7D1h/swayest_workstyle/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
-        $(cargo_crate_uris ${CRATES})"
+        $(cargo_crate_uris ${CRATES})
+"
 
-# License set may be more restrictive as OR is not respected
-# use cargo-license for a more accurate license picture
 LICENSE="Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
@@ -139,5 +136,4 @@ BDEPEND=""
 S="${WORKDIR}/swayest_workstyle-${PV}"
 
 # rust does not use *FLAGS from make.conf, silence portage warning
-# update with proper path to binaries this crate installs, omit leading /
 QA_FLAGS_IGNORED="usr/bin/${PN}"
