@@ -119,7 +119,7 @@ CRATES="
 
 inherit cargo
 
-DESCRIPTION="Dynamically rename your Sway workspaces to indicate which programs are running in each workspace"
+DESCRIPTION="Dynamically rename Sway workspaces to indicate active programs"
 HOMEPAGE="https://github.com/Lyr-7D1h/swayest_workstyle"
 SRC_URI="https://github.com/Lyr-7D1h/swayest_workstyle/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
         $(cargo_crate_uris ${CRATES})
