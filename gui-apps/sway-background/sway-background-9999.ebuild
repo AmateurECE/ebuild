@@ -12,6 +12,6 @@ SLOT=0
 S="${DISTDIR}"
 
 src_install() {
-    install -Dm644 "${DISTDIR}/background.png" \
-            "${D}/usr/share/backgrounds/sway-background.png"
+	install -Dm644 "${DISTDIR}/background.png" \
+		"${D}/usr/share/backgrounds/sway-background.png"
 }
