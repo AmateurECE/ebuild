@@ -5,9 +5,19 @@ EAPI=8
 
 inherit git-r3
 
-DESCRIPTION="Start a Wayland session using GTKGreet and Greetd"
+DESCRIPTION="Configurable Wayland session launcher"
 HOMEPAGE="https://www.github.com/AmateurECE/dotfiles"
 SRC_URI="https://github.com/AmateurECE/dotfiles"
+DEPENDS="\
+	gui-apps/tuigreet \
+	gui-apps/wofi \
+	gui-libs/greetd \
+	gui-wm/hyprland \
+	gui-apps/foot \
+	gui-apps/waybar \
+	gui-apps/sworkstyle \
+	gui-apps/hyprpaper \
+	"
 
 EGIT_REPO_URI="${SRC_URI}"
 
