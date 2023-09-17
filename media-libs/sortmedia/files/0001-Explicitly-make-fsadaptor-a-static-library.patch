@@ -1,0 +1,27 @@
+From cffcaa67d35e01d4c3bfcb36eb96c7226d903074 Mon Sep 17 00:00:00 2001
+From: "Ethan D. Twardy" <ethan.twardy@gmail.com>
+Date: Sat, 16 Sep 2023 21:54:05 -0500
+Subject: [PATCH] Explicitly make fsadaptor a static library
+
+Some build systems (such as Portage, the build system for the Gentoo
+distribution) reconfigure CMake to generate shared libraries by
+default. This causes issues at installation time for us, since
+libfsadaptor is not currently installed by the CMake build script.
+So, explicitly make this library static.
+
+diff --git a/fsadaptor/CMakeLists.txt b/fsadaptor/CMakeLists.txt
+index f98ec35..ea1cc85 100644
+--- a/fsadaptor/CMakeLists.txt
++++ b/fsadaptor/CMakeLists.txt
+@@ -27,7 +27,7 @@ set(HEADERS
+     namespace.h
+ )
+ 
+-add_library(fsadaptor
++add_library(fsadaptor STATIC
+     PathConstIter.cpp
+     Path.cpp
+     StandardFilesystemAdaptor.cpp
+-- 
+2.42.0
+
