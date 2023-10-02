@@ -23,6 +23,7 @@ src_configure() {
 	local -a mycmakeargs=(
 		-DNOGIT=1
 		-DARM_DYNAREC=$(usex aot)
+		-DM1=ON
 	)
 
 	use ppc64 && mycmakeargs+=( -DPPC64LE=1 )
