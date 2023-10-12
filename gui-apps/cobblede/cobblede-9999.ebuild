@@ -5,7 +5,7 @@ EAPI=8
 
 inherit git-r3
 
-DESCRIPTION="Configurable Wayland session launcher"
+DESCRIPTION="The Cobble Desktop Environment"
 HOMEPAGE="https://www.github.com/AmateurECE/dotfiles"
 SRC_URI="https://github.com/AmateurECE/dotfiles"
 DEPENDS="\
@@ -15,7 +15,6 @@ DEPENDS="\
 	gui-wm/hyprland \
 	gui-apps/foot \
 	gui-apps/waybar \
-	gui-apps/sworkstyle \
 	gui-apps/hyprpaper \
 	"
 
