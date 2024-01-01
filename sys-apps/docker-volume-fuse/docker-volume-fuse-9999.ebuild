@@ -18,9 +18,11 @@ CRATES="
 	autocfg@1.1.0
 	axum@0.7.3
 	axum-core@0.4.2
+	axum-macros@0.4.0
 	backtrace@0.3.69
 	bitflags@1.3.2
 	bitflags@2.4.1
+	build-env@0.3.1
 	bytes@1.5.0
 	cc@1.0.83
 	cfg-if@1.0.0
@@ -29,8 +31,12 @@ CRATES="
 	clap_derive@4.4.7
 	clap_lex@0.6.0
 	colorchoice@1.0.0
+	cstr-argument@0.1.2
 	equivalent@1.0.1
 	fnv@1.0.7
+	foreign-types@0.5.0
+	foreign-types-macros@0.2.3
+	foreign-types-shared@0.3.1
 	form_urlencoded@1.2.1
 	futures-channel@0.3.30
 	futures-core@0.3.30
@@ -53,6 +59,7 @@ CRATES="
 	itoa@1.0.10
 	lazy_static@1.4.0
 	libc@0.2.151
+	libsystemd-sys@0.9.3
 	lock_api@0.4.11
 	log@0.4.20
 	matchers@0.1.0
@@ -73,6 +80,7 @@ CRATES="
 	pin-project-internal@1.1.3
 	pin-project-lite@0.2.13
 	pin-utils@0.1.0
+	pkg-config@0.3.28
 	proc-macro2@1.0.72
 	quote@1.0.34
 	redox_syscall@0.4.1
@@ -87,7 +95,7 @@ CRATES="
 	scopeguard@1.2.0
 	serde@1.0.193
 	serde_derive@1.0.193
-	serde_json@1.0.108
+	serde_json@1.0.109
 	serde_path_to_error@0.1.14
 	serde_urlencoded@0.7.1
 	sharded-slab@0.1.7
@@ -98,6 +106,7 @@ CRATES="
 	strsim@0.10.0
 	syn@2.0.43
 	sync_wrapper@0.1.2
+	systemd@0.10.0
 	thread_local@1.1.7
 	tokio@1.35.1
 	tokio-macros@2.2.0
@@ -112,6 +121,7 @@ CRATES="
 	tracing-subscriber@0.3.18
 	try-lock@0.2.5
 	unicode-ident@1.0.12
+	utf8-cstr@0.1.6
 	utf8parse@0.2.1
 	valuable@0.1.0
 	want@0.3.1
@@ -151,7 +161,7 @@ SRC_URI="${CARGO_CRATE_URIS}"
 
 # License set may be more restrictive as OR is not respected
 # use cargo-license for a more accurate license picture
-LICENSE="0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 MIT Unicode-DFS-2016 Unlicense ZLIB"
+LICENSE="0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 LGPL-2.1-or-later WITH GCC-exception-2.0 MIT Unicode-DFS-2016 Unlicense ZLIB"
 SLOT="0"
 KEYWORDS="~arm64"
 
