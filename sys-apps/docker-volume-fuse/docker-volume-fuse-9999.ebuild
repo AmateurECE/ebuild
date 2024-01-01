@@ -9,6 +9,11 @@ CRATES="
 	addr2line@0.21.0
 	adler@1.0.2
 	aho-corasick@1.1.2
+	anstream@0.6.5
+	anstyle@1.0.4
+	anstyle-parse@0.2.3
+	anstyle-query@1.0.2
+	anstyle-wincon@3.0.2
 	async-trait@0.1.76
 	autocfg@1.1.0
 	axum@0.7.3
@@ -19,6 +24,11 @@ CRATES="
 	bytes@1.5.0
 	cc@1.0.83
 	cfg-if@1.0.0
+	clap@4.4.12
+	clap_builder@4.4.12
+	clap_derive@4.4.7
+	clap_lex@0.6.0
+	colorchoice@1.0.0
 	equivalent@1.0.1
 	fnv@1.0.7
 	form_urlencoded@1.2.1
@@ -30,6 +40,7 @@ CRATES="
 	gimli@0.28.1
 	h2@0.4.0
 	hashbrown@0.14.3
+	heck@0.4.1
 	hermit-abi@0.3.3
 	http@1.0.0
 	http-body@1.0.0
@@ -84,6 +95,7 @@ CRATES="
 	slab@0.4.9
 	smallvec@1.11.1
 	socket2@0.5.5
+	strsim@0.10.0
 	syn@2.0.43
 	sync_wrapper@0.1.2
 	thread_local@1.1.7
@@ -98,33 +110,43 @@ CRATES="
 	tracing-core@0.1.32
 	tracing-log@0.2.0
 	tracing-subscriber@0.3.18
+	try-lock@0.2.5
 	unicode-ident@1.0.12
+	utf8parse@0.2.1
 	valuable@0.1.0
+	want@0.3.1
 	wasi@0.11.0+wasi-snapshot-preview1
 	winapi@0.3.9
 	winapi-i686-pc-windows-gnu@0.4.0
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	windows-sys@0.48.0
+	windows-sys@0.52.0
 	windows-targets@0.48.5
+	windows-targets@0.52.0
 	windows_aarch64_gnullvm@0.48.5
+	windows_aarch64_gnullvm@0.52.0
 	windows_aarch64_msvc@0.48.5
+	windows_aarch64_msvc@0.52.0
 	windows_i686_gnu@0.48.5
+	windows_i686_gnu@0.52.0
 	windows_i686_msvc@0.48.5
+	windows_i686_msvc@0.52.0
 	windows_x86_64_gnu@0.48.5
+	windows_x86_64_gnu@0.52.0
 	windows_x86_64_gnullvm@0.48.5
+	windows_x86_64_gnullvm@0.52.0
 	windows_x86_64_msvc@0.48.5
+	windows_x86_64_msvc@0.52.0
 "
 
 inherit cargo
 inherit git-r3
+EGIT_REPO_URI="file:///home/edtwardy/Git/docker-volume-fuse.git"
 
 DESCRIPTION="docker-volume-fuse"
 # Double check the homepage as the cargo_metadata crate
 # does not provide this value so instead repository is used
 HOMEPAGE="homepage field in Cargo.toml inaccessible to cargo metadata"
-
-EGIT_REPO_URI="file:///home/edtwardy/Git/docker-volume-fuse.git"
-
 SRC_URI="${CARGO_CRATE_URIS}"
 
 # License set may be more restrictive as OR is not respected
@@ -148,4 +170,13 @@ src_unpack() {
 
 src_install() {
 	cargo_src_install
+
+	# Install the systemd socket and services
+	insinto /usr/lib/systemd/system
+	doins ${S}/docker-volume-fuse.socket
+	doins ${S}/docker-volume-fuse.service
+
+	# Install the containers.conf fragment
+	insinto /etc/containers/containers.conf.d
+	doins ${S}/volume-fuse.conf
 }
