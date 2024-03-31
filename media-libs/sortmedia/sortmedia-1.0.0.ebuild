@@ -7,8 +7,7 @@ inherit cmake
 
 DESCRIPTION="Utilities to sort media files on the filesystem based on embedded metadata"
 HOMEPAGE="https://www.github.com/AmateurECE/sortmedia"
-SRC_URI="https://github.com/AmateurECE/${PN}/archive/refs/tags/v${PV}-rc2.tar.gz -> ${P}-rc2.tar.gz"
-S="${WORKDIR}/sortmedia-1.0.0-rc2"
+SRC_URI="https://github.com/AmateurECE/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 DEPENDS+=media-libs/taglib-1.13.1
 DEPENDS+=dev-cpp/cli11
