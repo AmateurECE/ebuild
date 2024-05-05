@@ -12,7 +12,17 @@ SRC_URI="https://github.com/AmateurECE/sortmedia.git"
 EGIT_REPO_URI="${SRC_URI}"
 EGIT_BRANCH="develop"
 
-DEPENDS=media-libs/taglib-1.13.1
+DEPENDS+=media-libs/taglib-1.13.1
+DEPENDS+=dev-cpp/cli11
 
-LICENSE="GPL-3"
+LICENSE="MIT"
 SLOT=0
+
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_MODULE_PATH=${S}/cmake
+		-DCMAKE_CXX_STANDARD=23
+		-DRELEASE_VERSION=${PV}
+	)
+	cmake_src_configure
+}
