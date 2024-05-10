@@ -17,7 +17,7 @@ DEPENDS="\
 	gui-apps/wofi \
 	gui-libs/greetd \
 	gui-wm/hyprland \
-	gui-apps/foot \
+	x11-terms/kitty \
 	gui-apps/waybar \
 	gui-apps/hyprpaper \
 	"
