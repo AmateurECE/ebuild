@@ -10,6 +10,7 @@ EGIT_REPO_URI="https://github.com/AmateurECE/dotfiles"
 DESCRIPTION="The Cobble Desktop Environment"
 HOMEPAGE="https://www.github.com/AmateurECE/dotfiles"
 SRC_URI="${EGIT_REPO_URI}
+https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/FunForrest.conf
 https://www.ethantwardy.com/srv/desktop-background.png"
 # TODO: Replace tuigreet with ly?
 DEPENDS="\
@@ -28,6 +29,7 @@ KEYWORDS="~arm64"
 
 src_install() {
 	emake DESTDIR="${D}" install
-	insinto /usr/share/backgrounds
+	insinto /usr/share/cobblede
 	doins "${DISTDIR}/desktop-background.png"
+	newins "${DISTDIR}/FunForrest.conf" kitty-theme.conf
 }
