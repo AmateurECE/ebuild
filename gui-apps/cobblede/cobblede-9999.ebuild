@@ -13,15 +13,17 @@ SRC_URI="${EGIT_REPO_URI}
 https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/FunForrest.conf
 https://www.ethantwardy.com/srv/desktop-background.png"
 # TODO: Replace tuigreet with ly?
-DEPENDS="\
-	gui-apps/tuigreet \
-	gui-apps/wofi \
+DEPEND="\
 	gui-libs/greetd \
+	gui-apps/tuigreet \
 	gui-wm/hyprland \
-	x11-terms/kitty \
-	gui-apps/waybar \
 	gui-apps/hyprpaper \
+	gui-apps/eww \
+	media-fonts/nerdfonts[iosevka] \
+	gui-apps/wofi \
+	x11-terms/kitty \
 	"
+RDEPEND="${DEPEND}"
 
 LICENSE="GPL-2"
 SLOT=0
