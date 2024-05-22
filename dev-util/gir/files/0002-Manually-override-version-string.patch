@@ -1,0 +1,74 @@
+From a792510321e3ba07936cb8885d88292355f4b06c Mon Sep 17 00:00:00 2001
+From: "Ethan D. Twardy" <ethan.twardy@gmail.com>
+Date: Wed, 22 May 2024 06:55:05 -0500
+Subject: [PATCH] Manually override version string
+
+---
+ .gitignore         |  1 -
+ Cargo.toml         |  1 -
+ build.rs           | 23 -----------------------
+ src/gir_version.rs |  1 +
+ 4 files changed, 1 insertion(+), 25 deletions(-)
+ delete mode 100644 build.rs
+ create mode 100644 src/gir_version.rs
+
+diff --git a/.gitignore b/.gitignore
+index 06e2877b..91c832a8 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,4 +1,3 @@
+ target
+-/src/gir_version.rs
+ /.vscode
+ **.DS_Store
+diff --git a/Cargo.toml b/Cargo.toml
+index 24014d46..6288f7d6 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -6,7 +6,6 @@ authors = [
+ 	"Gleb Kozyrev <gleb@gkoz.com>",
+ 	"Guillaume Gomez <guillaume1.gomez@gmail.com>",
+ ]
+-build = "build.rs"
+ exclude = ["Gir*.toml", "tests/**/*", "*.md", "generator.py"]
+ edition = "2021"
+ 
+diff --git a/build.rs b/build.rs
+deleted file mode 100644
+index 043c0a57..00000000
+--- a/build.rs
++++ /dev/null
+@@ -1,23 +0,0 @@
+-use std::{fs::File, io::Write};
+-
+-// Build.rs does not use all provided functions
+-#[allow(dead_code)]
+-#[path = "src/git.rs"]
+-mod git;
+-
+-fn main() {
+-    let repo_path = git::git_dir(".").unwrap();
+-    let head_path = repo_path.join("HEAD");
+-    println!("cargo:rerun-if-changed={}", head_path.display());
+-    let head = std::fs::read_to_string(&head_path).unwrap();
+-    if let Some(ref_) = head.trim_end().strip_prefix("ref: ") {
+-        let ref_path = repo_path.join(ref_);
+-        assert!(ref_path.is_file());
+-        println!("cargo:rerun-if-changed={}", ref_path.display());
+-    }
+-    let ver = git::repo_hash(".").unwrap_or_else(|| "???".into());
+-
+-    File::create("src/gir_version.rs")
+-        .and_then(|mut f| writeln!(f, "pub const VERSION: &str = \"{ver}\";",))
+-        .unwrap();
+-}
+diff --git a/src/gir_version.rs b/src/gir_version.rs
+new file mode 100644
+index 00000000..05ab3118
+--- /dev/null
++++ b/src/gir_version.rs
+@@ -0,0 +1 @@
++pub const VERSION: &str = "0.19.1";
+-- 
+2.45.0
+

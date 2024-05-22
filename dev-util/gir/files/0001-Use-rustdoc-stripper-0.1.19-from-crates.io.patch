@@ -1,0 +1,40 @@
+From b05f4c324201084eb8ee37b3d71f16f66fb2f992 Mon Sep 17 00:00:00 2001
+From: "Ethan D. Twardy" <ethan.twardy@gmail.com>
+Date: Wed, 22 May 2024 06:33:45 -0500
+Subject: [PATCH] Use rustdoc-stripper 0.1.19 from crates.io
+
+---
+ Cargo.lock | 3 ++-
+ Cargo.toml | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/Cargo.lock b/Cargo.lock
+index 6532fa72..e63b861e 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -185,7 +185,8 @@ checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
+ [[package]]
+ name = "rustdoc-stripper"
+ version = "0.1.19"
+-source = "git+https://github.com/GuillaumeGomez/rustdoc-stripper#1170265c0f2a3728c086c717aa0603ccaad18a81"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "7ab2432ada69d3b404987a137436b0e475c6776f7a0c86ee00b356c0348ef40d"
+ 
+ [[package]]
+ name = "serde"
+diff --git a/Cargo.toml b/Cargo.toml
+index 1cd80375..24014d46 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -20,7 +20,7 @@ env_logger = { version = "0.11", default-features = false }
+ log = "0.4"
+ regex = "1.10"
+ hprof = "0.1"
+-rustdoc-stripper = { git = "https://github.com/GuillaumeGomez/rustdoc-stripper" }
++rustdoc-stripper = "0.1.19"
+ 
+ [profile.release]
+ codegen-units = 4
+-- 
+2.45.0
+
