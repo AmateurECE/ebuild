@@ -10,7 +10,7 @@ EAPI=8
 # continue to move quickly. It's not uncommon for fixes to be made shortly
 # after releases.
 
-LUA_COMPAT=( lua5-{3,4} )
+LUA_COMPAT=(lua5-{3,4})
 
 inherit lua-single meson systemd
 
@@ -23,7 +23,7 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://gitlab.freedesktop.org/pipewire/${PN}/-/archive/${PV}/${P}.tar.bz2"
-	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86"
+	KEYWORDS="amd64 arm arm64 ~loong ~mips ppc ppc64 ~riscv ~sparc x86"
 fi
 
 LICENSE="MIT"
@@ -63,13 +63,15 @@ RDEPEND="
 	)
 "
 
-DOCS=( {NEWS,README}.rst )
+DOCS=({NEWS,README}.rst)
 
 PATCHES=(
 	# Defer enabling sound server parts to media-video/pipewire
 	# TODO: Soon, we should be able to migrate to just a dropin at
 	# /usr/share. See https://gitlab.freedesktop.org/pipewire/wireplumber/-/issues/652#note_2399735.
-	"${FILESDIR}"/${PN}-0.4.81-config-disable-sound-server-parts.patch
+	"${FILESDIR}"/${PN}-0.5.6-config-disable-sound-server-parts.patch
+
+	"${FILESDIR}"/${P}-bluetooth-only-autoswitch.patch
 )
 
 src_configure() {
@@ -95,8 +97,15 @@ src_configure() {
 	meson_src_configure
 }
 
+src_install() {
+	meson_src_install
+
+	mv "${ED}"/usr/share/doc/wireplumber/* "${ED}"/usr/share/doc/${PF} || die
+	rmdir "${ED}"/usr/share/doc/wireplumber || die
+}
+
 pkg_postinst() {
-	if systemd_is_booted ; then
+	if systemd_is_booted; then
 		ewarn "pipewire-media-session.service is no longer installed. You must switch"
 		ewarn "to wireplumber.service user unit before your next logout/reboot:"
 		ewarn "systemctl --user disable pipewire-media-session.service"

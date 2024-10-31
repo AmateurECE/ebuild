@@ -1,0 +1,11 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM 'https://www.gentoo.org/dtd/metadata.dtd'>
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ethan.twardy@gmail.com</email>
+	</maintainer>
+</pkgmetadata>
+
+[31;01m!!! File ./metadata.xml exists.[39;49;00m
+[31;01m!!! Use -f to force overwrite.[39;49;00m
