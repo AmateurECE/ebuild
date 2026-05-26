@@ -18,7 +18,7 @@ DEPEND="\
 	gui-libs/greetd \
 	gui-apps/tuigreet \
 	gui-wm/sway \
-	gui-apps/eww \
+	gui-apps/waybar[network] \
 	media-fonts/nerdfonts[iosevka] \
 	gui-apps/wofi \
 	x11-terms/kitty \
